@@ -22,9 +22,9 @@ class _VideoComponentState extends State<VideoComponent> {
   @override
   void initState() {
     super.initState();
-
+//
     controller_video = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4')
+        'https://9f24-41-175-78-25.ngrok-free.app/enlight/video/prophet_bondera.mp4')
       ..initialize().then((_) {
         setState(() {});
       });

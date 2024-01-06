@@ -69,7 +69,7 @@ class ParamsController extends GetxController {
       sermons.value = jsonData.map((jobJson) => SermonsModel.fromJson(jobJson)).toList();
       print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       print(sermons.value);
-      loading.value=false;
+    //  loading.value=false;
       update();
     } else {
       throw Exception('Failed to load data');

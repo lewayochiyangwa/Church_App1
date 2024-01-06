@@ -88,32 +88,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         // salery: job['salery']==null?'':'',
       ));
     }//
-    return params_controller.loading.value?Center(
-      child: Container(
-        constraints: BoxConstraints(maxHeight: 80), // Set a maximum height for the container
-        margin: EdgeInsets.all(5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Align the content vertically
-          children: [
-            CircularProgressIndicator(
-              strokeWidth: 4.0,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-              backgroundColor: Colors.red,
-            ),
-            SizedBox(height: 5),
-            Text(
-              "Loading......",
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
-    )
-  : Scaffold(
+    return Scaffold(
       body:  Container(
         child: SafeArea(
           child: SingleChildScrollView(
