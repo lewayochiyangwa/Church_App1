@@ -5,25 +5,31 @@ import 'dart:convert';
 
 import 'package:iserve_billing/models/response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-class EventsContainer extends StatelessWidget {
-  const EventsContainer({
+import 'package:intl/intl.dart';
+class SermonsContainer extends StatelessWidget {
+  const SermonsContainer({
     Key? key,
    // required this.iconUrl,
     required this.title,
+    required this.verse,
     required this.description,
-    required this.fromTime,
-    required this.toTime,
-    required this.location,
-    required this.onTap,
+    required this.time_date,
     required this.id,
   }) : super(key: key);
-  final  title, fromTime, toTime, location,description;//String iconUrl,
+  final  title, verse, description,time_date;//String iconUrl,
   final int id;
-  final Function onTap;
+ // final Function onTap;
+  String formatDate(String dateString) {
+    DateTime date = DateTime.parse(dateString);
+    final DateFormat formatter = DateFormat('d MMM yyyy');
+    final String formattedDate = formatter.format(date);
+    return formattedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
+    var inputFormat = DateFormat('dd/MM/yyyy');
+
     return GestureDetector(
       onTap:(){},
       child: Container(
@@ -40,58 +46,39 @@ class EventsContainer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-               /* ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child:ClipRRect(child: Image.asset(logo,width: 80,height: 80,))
-                ),*/
-                SizedBox(width: 15),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Center(
-                        child: Text(
-                          "$title",
-                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: ThemeColor)
-                        ),
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "7 AM",
-                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
-                          ),
-                          SizedBox(width: 40,),
-                          Text(
-                            "10 PM",
-                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
-                          ),
-
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
+            Text(
+              "$title",
             ),
             SizedBox(height: 5),
-            Text(
-              "$description",
+            Row(
+              children: [
+               // Icon(Icons.calendar_today,color: ThemeColor,),
+                Icon(Icons.book_outlined,color: ThemeColor,),
+                Text(
+                  "$verse",
+                ),
+              ],
+            ),
+            SizedBox(height: 9),
+            Container(
+              width: 300,
+              child: Text("$description",
+                style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color: Colors.grey.shade400),
+                softWrap: true,
+              ),
             ),
             SizedBox(height: 9),
             Row(
               children: [
-                Icon(Icons.location_on,color: ThemeColor,),
-                SizedBox(width: 10,),
-                Text("Mabvuku Kamunhu Shopping Center",
-                    style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
-                )
+                Text(
+                  "Date Posted: ",
+                ),
+                Text(
+                  formatDate(time_date),
+                ),
               ],
-            )
+            ),
+
           ],
         ),
       ),

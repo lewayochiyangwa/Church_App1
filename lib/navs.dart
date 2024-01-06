@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iserve_billing/screens/Sermons.dart';
 import 'package:iserve_billing/screens/extras.dart';
 import 'package:iserve_billing/screens/faqs.dart';
 
@@ -32,17 +33,8 @@ class _BottomNavigationExampleState extends State {
     Events(),
     //DashboardScreen2(),
     Giving(),
-    Events(),
-   // Gallery()
-  /*  Center(
-      child: Text("Others"),
-    )*/
-    //MetersList(),
-  //Home(),
-    /*Center(
-      child: Settings()//Text("Settings"),
-    )*/
-    Extras()
+    Sermons(),
+
   ];
 
   _changeTab(int index) {
@@ -85,7 +77,7 @@ class _BottomNavigationExampleState extends State {
       appBar: AppBar(
         backgroundColor: Colors.red.shade900,
         //
-       // leading: Icon(Icons.help_outline),
+
           actions: [
             Padding(
               padding: const EdgeInsets.all(10.0),

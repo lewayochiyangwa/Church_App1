@@ -29,3 +29,30 @@ class EventsModel {
 }
 
 
+class SermonsModel {
+  final String id;
+  final String verse;
+  final String title;
+  final String description;
+  final String time_date;
+
+
+  SermonsModel({
+    required this.id,
+    required this.verse,
+    required this.title,
+    required this.description,
+    required this.time_date
+  });
+
+  factory SermonsModel.fromJson(Map<String, dynamic> json) {
+    return SermonsModel(
+        id: json['id'],
+        verse: json['verse'],
+        title: json['sermon_title'],
+        description: json['description'],
+        time_date: json['time_stamp']
+    );
+  }
+}
+

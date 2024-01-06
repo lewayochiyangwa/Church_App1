@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iserve_billing/dashboard/responsive.dart';
 import 'package:iserve_billing/dashboard/starage_details.dart';
+import 'package:iserve_billing/screens/Events.dart';
 import 'package:iserve_billing/screens/Giving.dart';
 import 'package:iserve_billing/screens/job_post2.dart';
 
@@ -17,6 +18,8 @@ import 'package:video_player/video_player.dart';
 import '../drawer.dart';
 import '../global_constants.dart';
 
+import '../screens/Events2.dart';
+import '../screens/Giving2.dart';
 import '../temp1/ui/widgets/Footer.dart';
 import '../temp1/ui/widgets/MyElevatedButtton.dart';
 import '../temp1/ui/widgets/VideoComponent.dart';
@@ -33,8 +36,6 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
  // final database = MetersDatabase();
-
-
 
   late SharedPreferences logindata;
   late int userId;
@@ -146,6 +147,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                                MyElevatedButton(onPressed:(){
                                  print("Events Button Clicked");
+
+
+                                 Navigator.push(
+                                   context,
+                                   MaterialPageRoute(builder: (context) => Events2()),// Settings()),
+                                 );
                                },
                                    text: "Events", color: Colors.red.shade900,
                                    textColor: Colors.white,
@@ -155,6 +162,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 Spacer(),
                                   MyElevatedButton(onPressed:(){
                                     print("Give Button Clicked");
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Giving2()),// Settings()),
+                                    );
                                   },
                                       text: "Give ", color: Colors.red.shade900,
                                       textColor: Colors.white,

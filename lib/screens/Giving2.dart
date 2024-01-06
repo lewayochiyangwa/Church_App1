@@ -11,14 +11,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../global_constants.dart';
 import '../temp1/ui/widgets/MyElevatedButtton.dart';
 
-class Giving extends StatefulWidget {
-  const Giving({Key? key}) : super(key: key);
+class Giving2 extends StatefulWidget {
+  const Giving2({Key? key}) : super(key: key);
 
   @override
-  State<Giving> createState() => _GivingState();
+  State<Giving2> createState() => _Giving2State();
 }
 
-class _GivingState extends State<Giving> {
+class _Giving2State extends State<Giving2> {
   List data = [];
   List partime_data = [];
   List online_data = [];
@@ -40,9 +40,14 @@ class _GivingState extends State<Giving> {
   Widget build(BuildContext context) {
     final params_controller =  Get.put<ParamsController>(ParamsController());
     return  Scaffold(
-      /*  appBar: AppBar(
-          title: Text('Flutter TextField Example'),
-        ),*/
+        appBar: AppBar(
+          backgroundColor: Colors.red.shade900,
+          title: Text(
+            NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
+
+
+          ),
+        ),
         body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.all(15),

@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:iserve_billing/drawer.dart';
 import 'package:iserve_billing/services/params_controller.dart';
 
 
-
-
+import '../global_constants.dart';
 import '../temp1/ui/widgets/eventscontainer.dart';
 import 'package:get/get.dart';
-
-import '../temp1/ui/widgets/sermonscontainer.dart';
-class Sermons extends StatefulWidget {
-  const Sermons({Key? key}) : super(key: key);
+class Events2 extends StatefulWidget {
+  const Events2({Key? key}) : super(key: key);
 
   @override
-  State<Sermons> createState() => _SermonsState();
+  State<Events2> createState() => _Events2State();
 }
 
-class _SermonsState extends State<Sermons> {
+class _Events2State extends State<Events2> {
   final params_controller =  Get.put<ParamsController>(ParamsController());
   //final job = jobs[index];
   //params_controller.jobs.v
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red.shade900,
+        title: Text(
+          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
+
+
+        ),
+      ),
       body:Stack(
         children: <Widget>[
           Positioned(
@@ -43,15 +49,17 @@ class _SermonsState extends State<Sermons> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount:params_controller.sermons.length,// jobList.length,
+                      itemCount:params_controller.events.length,// jobList.length,
                       itemBuilder: (ctx, i) {
-                        return SermonsContainer(
-                          id:int.parse(params_controller.sermons[i].id),//jobList[i].id,
-                            verse:params_controller.sermons[i].verse,// jobList[i].description,
-                            description:params_controller.sermons[i].description,// jobList[i].location,
-                          time_date: params_controller.sermons[i].time_date,//jobList[i].salary,
-                          title: params_controller.sermons[i].title,//jobList[i].title,
-
+                        return EventsContainer(
+                          id:int.parse(params_controller.events[i].id),//jobList[i].id,
+                          description:params_controller.events[i].description,// jobList[i].description,
+                          //iconUrl: jobList[i].iconUrl,
+                          location:params_controller.events[i].location,// jobList[i].location,
+                          fromTime: params_controller.events[i].fromTime,//jobList[i].salary,
+                          toTime: params_controller.events[i].toTime,//jobList[i].salary,
+                          title: params_controller.events[i].title,//jobList[i].title,
+                          onTap: () {}
                         );
                       },
                     ),
