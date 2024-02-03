@@ -4,6 +4,7 @@ import 'dart:ui' show PointerDeviceKind;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iserve_billing/screens/notes/note_home_try.dart';
 
 import 'package:iserve_billing/screens/vidz.dart';
 import 'package:iserve_billing/settings.dart';

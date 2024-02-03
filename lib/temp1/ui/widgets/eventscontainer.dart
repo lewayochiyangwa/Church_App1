@@ -62,12 +62,22 @@ class EventsContainer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "7 AM",
+                              "Time :",
                               style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
                           ),
-                          SizedBox(width: 40,),
+                          SizedBox(width: 10,),
                           Text(
-                            "10 PM",
+                            "$fromTime",
+                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
+                          ),
+                          SizedBox(width: 10,),
+                          Text(
+                              "-",
+                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
+                          ),
+                          SizedBox(width: 10,),
+                          Text(
+                            "$toTime",
                               style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
                           ),
 
@@ -87,7 +97,7 @@ class EventsContainer extends StatelessWidget {
               children: [
                 Icon(Icons.location_on,color: ThemeColor,),
                 SizedBox(width: 10,),
-                Text("Mabvuku Kamunhu Shopping Center",
+                Text("$location",
                     style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey.shade400)
                 )
               ],

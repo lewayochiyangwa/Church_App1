@@ -11,14 +11,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../global_constants.dart';
 import '../temp1/ui/widgets/MyElevatedButtton.dart';
 
-class Giving2 extends StatefulWidget {
-  const Giving2({Key? key}) : super(key: key);
+class PrayerRequest extends StatefulWidget {
+  const PrayerRequest({Key? key}) : super(key: key);
 
   @override
-  State<Giving2> createState() => _Giving2State();
+  State<PrayerRequest> createState() => _PrayerRequestState();
 }
 
-class _Giving2State extends State<Giving2> {
+class _PrayerRequestState extends State<PrayerRequest> {
   List data = [];
   List partime_data = [];
   List online_data = [];
@@ -54,14 +54,17 @@ class _Giving2State extends State<Giving2> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(15),
-                    child:Text("No Goods Or Services  Provided \n In Exchange Of Donation. "),
+                    padding: EdgeInsets.all(10),
+                    child:Text("No weapon formed against you shall prosper, And every tongue which rises against you in judgment You shall condemn. "
+                        "This is the heritage of the servants of the Lord, And their righteousness is from Me,” Says the Lord.",
+                      style: TextStyle(fontSize: 10, color: Colors.black),
+                    )
                   ),
                   Padding(
                     padding: EdgeInsets.all(15),
                     child:DropdownButtonFormField(
                       decoration: InputDecoration(
-                        labelText: 'Donation Type',
+                        labelText: 'Request Type',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(100.0),
                          //  borderSide: BorderSide(color: Colors.red, width: 1),
@@ -92,55 +95,15 @@ class _Giving2State extends State<Giving2> {
                   ),
 
 
+
                   Padding(
                     padding: EdgeInsets.all(15),
-                    child:TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child:TextField(
+                      maxLines: 8,
+                      //autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration:  InputDecoration(
-                        labelText: 'Donation Amount',
-                        hintText: 'Donation Amount',
-                        hintStyle: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.grey,
-                          fontFamily: "Roboto",
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          //  borderSide: BorderSide(color: Colors.blue, width: 1)
-                        ),
-                        /**   focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue, width: 1)),
-                            enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue, width: 1)
-                            ),*/
-                        contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
-                      ),
-                      controller: _textAmountController,
-                      readOnly: false,
-                      onTap: () async {
-
-                      },
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a value';
-                        }
-                        final int? intValue = int.tryParse(value);
-                        if (intValue == null) {
-                          return 'Please enter value';
-                        }
-                        return null;
-                      },
-
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(15),
-                    child:TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration:  InputDecoration(
-                        labelText: 'Ecocash  Phone',
-                        hintText: 'Ecocash  Phone',
+                        labelText: 'Description',
+                        hintText: 'Description',
                         hintStyle: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
@@ -158,7 +121,7 @@ class _Giving2State extends State<Giving2> {
 
                       },
                       keyboardType: TextInputType.number,
-                      validator: (value) {
+                   /*   validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter a value';
                         }
@@ -167,7 +130,7 @@ class _Giving2State extends State<Giving2> {
                           return 'Please enter value';
                         }
                         return null;
-                      },
+                      },*/
 
                     ),
                   ),
@@ -178,9 +141,9 @@ class _Giving2State extends State<Giving2> {
                     print("Give Button Clicked");
                     pay(_value.toString(),_textAmountController.text,_textPhoneController.text);
                   },
-                    text: "Give ", color: ThemeColor,
+                    text: "Prayer Request ", color: ThemeColor,
                     textColor: Colors.white,
-                    width: 130,
+                    width: 160,
                     height: 40,
                   ),
                 ],

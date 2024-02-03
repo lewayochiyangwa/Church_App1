@@ -21,7 +21,7 @@ class _Events2State extends State<Events2> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red.shade900,
+        backgroundColor: ThemeColor,
         title: Text(
           NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
 
@@ -52,7 +52,7 @@ class _Events2State extends State<Events2> {
                       itemCount:params_controller.events.length,// jobList.length,
                       itemBuilder: (ctx, i) {
                         return EventsContainer(
-                          id:int.parse(params_controller.events[i].id),//jobList[i].id,
+                          id:int.parse(params_controller.events[i].ID),//jobList[i].id,
                           description:params_controller.events[i].description,// jobList[i].description,
                           //iconUrl: jobList[i].iconUrl,
                           location:params_controller.events[i].location,// jobList[i].location,

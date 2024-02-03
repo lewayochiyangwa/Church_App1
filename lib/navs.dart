@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iserve_billing/screens/Sermons.dart';
-import 'package:iserve_billing/screens/extras.dart';
-import 'package:iserve_billing/screens/faqs.dart';
-
 import 'package:iserve_billing/screens/Giving.dart';
 import 'package:iserve_billing/screens/Events.dart';
-import 'package:iserve_billing/settings.dart';
+import 'package:iserve_billing/screens/faqs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 import 'dashboard/home2.dart';
-
 import 'drawer.dart';
 import 'global_constants.dart';
 
@@ -75,7 +69,7 @@ class _BottomNavigationExampleState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red.shade900,
+        backgroundColor:ThemeColor ,//Colors.red.shade900
         //
 
           actions: [

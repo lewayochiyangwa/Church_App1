@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../global_constants.dart';
+
 class VideoComponent extends StatefulWidget {
 
 
@@ -24,7 +26,7 @@ class _VideoComponentState extends State<VideoComponent> {
     super.initState();
 //
     controller_video = VideoPlayerController.network(
-        'https://9f24-41-175-78-25.ngrok-free.app/enlight/video/prophet_bondera.mp4')
+        videobar)
       ..initialize().then((_) {
         setState(() {});
       });

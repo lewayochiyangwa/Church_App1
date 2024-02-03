@@ -3,9 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iserve_billing/dashboard/home2.dart';
+import 'package:iserve_billing/global_constants.dart';
 import 'package:iserve_billing/screens/Events.dart';
+import 'package:iserve_billing/screens/PrayerRequest.dart';
+import 'package:iserve_billing/screens/notes/note_home.dart';
+import 'package:iserve_billing/screens/notes/note_home_try.dart';
 import 'package:iserve_billing/settings.dart';
 import 'package:iserve_billing/sign_ups/login_page.dart';
+import 'package:iserve_billing/temp1/ui/widgets/CustomDevider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'navs.dart';
@@ -25,12 +30,13 @@ class _DrawerClassState extends State<DrawerClass> {
   late String username;
   late String username1="";
   late String email="";
-
+  late bool check=true;
   @override
   void initState() {
     super.initState();
 
     initial_state();
+
   }
 
   initial_state() async {
@@ -39,6 +45,7 @@ class _DrawerClassState extends State<DrawerClass> {
       username=logindata.getString('username')!;
       username1=logindata.getString('username1')!;
       email=logindata.getString('email')!;
+      //logindata.setBool('login', true);
     });
   }
 
@@ -51,32 +58,17 @@ class _DrawerClassState extends State<DrawerClass> {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text(username1,style: TextStyle(color: Colors.black),),
-            accountEmail: Text(email,style: TextStyle(color: Colors.black),),
+            accountName: Text(username1, style: TextStyle(color: Colors.black)),
+            accountEmail: Text(email, style: TextStyle(color: Colors.black)),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://appmaking.co/wp-content/uploads/2021/08/appmaking-logo-colored.png"),
+              backgroundImage: AssetImage("assets/images/ghmi.jpg"),
             ),
-            decoration: BoxDecoration(
+          /*  decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                  "https://appmaking.co/wp-content/uploads/2021/08/android-drawer-bg.jpeg",
-                ),
+                image: AssetImage("assets/images/basamaoko_logo.png"),
                 fit: BoxFit.fill,
               ),
-            ),
-           /* otherAccountsPictures: [
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                    "https://randomuser.me/api/portraits/women/74.jpg"),
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(
-                    "https://randomuser.me/api/portraits/men/47.jpg"),
-              ),
-            ],*/
+            ),*/
           ),
 
           ListTile(
@@ -92,49 +84,54 @@ class _DrawerClassState extends State<DrawerClass> {
     Divider(
     height: 30.0,
     thickness: 2.0,
-    color: Colors.orange,
+    color: ThemeColor,
     indent: 20.0,
     endIndent: 20.0,),
           ListTile(
             leading: Icon(Icons.contact_mail),
-            title: Text("Jobs Wanted"),
+            title: Text("Request Payer"),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  Events()),
+                MaterialPageRoute(builder: (context) => PrayerRequest()),// Settings()),
               );
 
             },
           ),
-    Divider(
-    height: 30.0,
-    thickness: 2.0,
-    color: Colors.orange,
-    indent: 20.0,
-    endIndent: 20.0,),
-          ListTile(
-            leading: Icon(Icons.contact_mail),
-            title: Text("Data Load"),
-            onTap: () {
-            /*  Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),// Settings()),
-              );*/
-            },
-          ),
-          Divider(
+          CustomDevider(
             height: 30.0,
             thickness: 2.0,
-            color: Colors.orange,
+            color: ThemeColor,
             indent: 20.0,
-            endIndent: 20.0,),
+            endIndent: 20.0,
+          ),
+          ListTile(
+            leading: Icon(Icons.contact_mail),
+            title: Text("Save Notes"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NoteScreenTry()),// Settings()),NoteScreen
+              );
+            },
+          ),
+
+          CustomDevider(
+            height: 30.0,
+            thickness: 2.0,
+            color: ThemeColor,
+            indent: 20.0,
+            endIndent: 20.0,
+          ),
           ListTile(
             leading: Icon(Icons.logout,color: Colors.red,),
-            title: Text("Logout"),
+            title: Text(check?"Login":"Logout",style: TextStyle(color: Colors.red),),
             onTap: () {
               print("preparing to set new login");
               logindata.setBool('login', true);
               logindata.setString("function_log_control","");
+
+
 
               Navigator.push(
                 context,

@@ -1,6 +1,6 @@
 
 class EventsModel {
-  final String id;
+  final String ID;
   final String title;
   final String location;
   final String toTime;
@@ -8,7 +8,7 @@ class EventsModel {
   final String description;
 
   EventsModel({
-    required this.id,
+    required this.ID,
     required this.title,
     required this.location,
     required this.toTime,
@@ -18,7 +18,7 @@ class EventsModel {
 
   factory EventsModel.fromJson(Map<String, dynamic> json) {
     return EventsModel(
-      id: json['id'],
+      ID: json['ID'],
       title: json['title'],
       location: json['location'],
       toTime: json['timeTo'],
@@ -35,6 +35,7 @@ class SermonsModel {
   final String title;
   final String description;
   final String time_date;
+ // final int deleted;
 
 
   SermonsModel({
@@ -42,7 +43,8 @@ class SermonsModel {
     required this.verse,
     required this.title,
     required this.description,
-    required this.time_date
+    required this.time_date,
+  //  required this.deleted
   });
 
   factory SermonsModel.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,7 @@ class SermonsModel {
         title: json['sermon_title'],
         description: json['description'],
         time_date: json['time_stamp']
+      //  deleted: json['deleted']
     );
   }
 }

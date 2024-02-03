@@ -32,8 +32,8 @@ class ParamsController extends GetxController {
   }
 
   getData()async {
-
-    final res = await http.get(Uri.parse("http://"+ip_address+"/church_api/api/client/params"));
+    //print(ip_address+"/ChurchAPI/api/ghmi/params.php");
+    final res = await http.get(Uri.parse(ip_address+"/ChurchAPI/api/ghmi/params.php"));
     var jsonData = json.decode(res.body);
     location_data = jsonData['data']['give'];
     print('machado');
@@ -41,8 +41,9 @@ class ParamsController extends GetxController {
   }
 
   getEvents()async {
+    //print(ip_address+"/ChurchAPI/api/ghmi/get_events.php");
     final response = await http.get(
-        Uri.parse("http://" + ip_address + "/church_api/api/client/events"));
+        Uri.parse(ip_address+"/ChurchAPI/api/ghmi/get_events.php"));
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = json.decode(response.body);
@@ -60,11 +61,14 @@ class ParamsController extends GetxController {
 
 
   getSermons()async {
+    print(ip_address+"/ChurchAPI/api/ghmi/get_sermons.php");
+    print("=================Tapinda muma Sermons Call Get====================");
     final response = await http.get(
-        Uri.parse("http://" + ip_address + "/church_api/api/client/sermons"));
+        Uri.parse(ip_address+"/ChurchAPI/api/ghmi/get_sermons.php"));
+    print("=================Tapinda muma Sermons after response====================");
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = json.decode(response.body);
-      print("=================Tapinda muma Sermons====================");
+
       print(jsonData);
       sermons.value = jsonData.map((jobJson) => SermonsModel.fromJson(jobJson)).toList();
       print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");

@@ -173,7 +173,7 @@ class _GivingState extends State<Giving> {
                     print("Give Button Clicked");
                     pay(_value.toString(),_textAmountController.text,_textPhoneController.text);
                   },
-                    text: "Give ", color: Colors.red.shade900,
+                    text: "Give ", color: ThemeColor,
                     textColor: Colors.white,
                     width: 130,
                     height: 40,
@@ -193,7 +193,7 @@ class _GivingState extends State<Giving> {
     String  _phoneController = phone;
 
 
-      Paynow paynow = Paynow(integrationKey: "960ad10a-fc0c-403b-af14-e9520a50fbf4", integrationId: "6054", returnUrl: "http://google.com", resultUrl: "http://google.co");
+      Paynow paynow = Paynow(integrationKey: "cd69ebc4-3386-4ea5-bf38-0ac17bfdefbb", integrationId: "16938", returnUrl: "http://google.com", resultUrl: "http://google.co");
       Payment payment = paynow.createPayment("user", "leroy.chiyangwa1994@gmail.com");
 
       payment.add(trxnType,double.parse(amount));
@@ -207,7 +207,7 @@ class _GivingState extends State<Giving> {
         print(response.pollUrl);
         getPollUrl = response.pollUrl;
 
-        var url = Uri.parse('http://'+ip_address+'/church_api/api/client/give');
+        var url = Uri.parse(ip_address+'/church_api/api/client/give');
 
         Map data = {
           'type' : trxnType,

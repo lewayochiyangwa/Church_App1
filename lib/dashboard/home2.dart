@@ -1,25 +1,17 @@
 
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iserve_billing/dashboard/responsive.dart';
-import 'package:iserve_billing/dashboard/starage_details.dart';
-import 'package:iserve_billing/screens/Events.dart';
-import 'package:iserve_billing/screens/Giving.dart';
-import 'package:iserve_billing/screens/job_post2.dart';
 
 import 'package:iserve_billing/services/params_controller.dart';
-import 'package:iserve_billing/temp2/theme/colors.dart';
-import 'package:iserve_billing/temp2/theme/images.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
-
-import '../drawer.dart';
 import '../global_constants.dart';
 
 import '../screens/Events2.dart';
 import '../screens/Giving2.dart';
+import '../screens/PrayerRequest.dart';
 import '../temp1/ui/widgets/Footer.dart';
 import '../temp1/ui/widgets/MyElevatedButtton.dart';
 import '../temp1/ui/widgets/VideoComponent.dart';
@@ -38,13 +30,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
  // final database = MetersDatabase();
 
   late SharedPreferences logindata;
+  late SharedPreferences logindata2;
   late int userId;
   //late String clientID;
 
-  List<Widget> jobCards = [Text(
-    'recents'.tr,
-    style: TextStyle(fontWeight: FontWeight.bold, color: KColors.title),
-  )];
+
 
 
 
@@ -79,16 +69,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     final params_controller =  Get.put<ParamsController>(ParamsController());
 
-    for (var job in params_controller.recentPosts_data) {
-      // print('ma locations'+job['location_name']);
-      jobCards.add(_jobCard(context,
-        //img: job['img']==null?'':'',
-        title: job['location_name'],
-        subtitle: job['job_name'],
-        // salery: job['salery']==null?'':'',
-      ));
-    }//
+
     return Scaffold(
+     // backgroundColor: Colors.grey.shade900,
       body:  Container(
         child: SafeArea(
           child: SingleChildScrollView(
@@ -107,10 +90,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           //padding: const EdgeInsets.all(10.0),
                             height: 200,
                             width:double.infinity,
-                           // color: Colors.orange,
+                           // color: ThemeColor,
                             child:VideoComponent(),
                           ),
-                          SizedBox(height: defaultPadding),
+                          SizedBox(height:5),
 
                           Container(
                           //  color: Colors.grey.shade200,
@@ -129,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                    MaterialPageRoute(builder: (context) => Events2()),// Settings()),
                                  );
                                },
-                                   text: "Events", color: Colors.red.shade900,
+                                   text: "Events", color:ThemeColor ,//Colors.red.shade900
                                    textColor: Colors.white,
                                    width: 100,
                                    height: 40,
@@ -142,7 +125,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       MaterialPageRoute(builder: (context) => Giving2()),// Settings()),
                                     );
                                   },
-                                      text: "Give ", color: Colors.red.shade900,
+                                      text: "Give ", color:ThemeColor,
                                       textColor: Colors.white,
                                       width: 100,
                                       height: 40,
@@ -155,7 +138,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                            // color: Colors.brown,
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             margin: EdgeInsets.symmetric(vertical: 12),
-                            height: 150,
+                            height: 130,
                             width: MediaQuery.of(context).size.width,
                             child: Card(
                               color:Colors.black12,
@@ -249,6 +232,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ),
                             ),
                           ),
+                          MyElevatedButton(onPressed:() async {
+                            logindata = await SharedPreferences.getInstance();
+                            if(logindata.getBool('login')!){
+                           //   logindata2 = await SharedPreferences.getInstance();
+                           //   logindata2.setString("login2","granted");
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text("Login To Submit Prayer Request"),
+                                  duration: Duration(seconds: 4),
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.blue,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(color: Colors.red, width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              );
+                            //  print("hmm andisi kuziva");
+                            }else{
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PrayerRequest()),// Settings()),
+                              );
+                            }
+
+                          },
+                            text: "Prayer Request ", color:ThemeColor,
+                            textColor: Colors.white,
+                            width: 200,
+                            height: 30,
+                          ),
+                          SizedBox(height:defaultPadding),
                        Footer(
                        theme:"JOIN THE WORSHIPPING",
                         subtitle:"SUNDAY",
@@ -295,67 +312,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 
 
-  Widget _jobCard(
-      BuildContext context, {
-       // required String img,
-        required String title,
-        required String subtitle,
-       // required String salery,
-      }) {
-    return GestureDetector(
-      onTap: () {
-      //  Navigator.push(context, JobDetailPage.getJobDetail());
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        margin: EdgeInsets.symmetric(vertical: 6),
-        //decoration: BoxDecoration(color: Colors.white),
-       //=========================
-       // margin: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
-       // padding: const EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(9.0),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey, blurRadius: 5.0, offset: Offset(0, 3))
-          ],
-        ),
-      //  ==========================
-        child: Row(
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: KColors.lightGrey,
-                borderRadius: BorderRadius.circular(4),
-              ),
-            //  child: Image.asset(""),
-            ),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontSize: 12, color: KColors.subtitle),
-                ),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: KColors.title,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
+
 
 
 

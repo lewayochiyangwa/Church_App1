@@ -109,7 +109,7 @@ class _SignInPageState extends State<SignInPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             CircleAvatar(
-                              backgroundImage: AssetImage("assets/images/basamaoko_logo.png"),
+                              backgroundImage: AssetImage("assets/images/ghmi.jpg"),
                               radius: 80.0,
                             ),
                           //  SizedBox(height: 20,),
@@ -173,7 +173,7 @@ class _SignInPageState extends State<SignInPage> {
                                   print('Container clicked!');
 
                                   print("login button pressed");
-                                  var url = Uri.parse('http://'+ip_address+'/basamaoko_api/api/client/login');
+                                  var url = Uri.parse(ip_address+'/api/ghmi/login.php');
                                   var headers = {'Content-Type': 'application/json'};
                                   var body = json.encode({
                                     'email': _email.text,
