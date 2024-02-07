@@ -167,13 +167,13 @@ class _SignInPageState extends State<SignInPage> {
                                       fontWeight: FontWeight.bold),),
                                 ),
                               ),*/
-                              GestureDetector(
+                         /*     GestureDetector(
                                 onTap: ()async {
                                   // Handle the onTap event here
                                   print('Container clicked!');
 
                                   print("login button pressed");
-                                  var url = Uri.parse(ip_address+'/api/ghmi/login.php');
+                                  var url = Uri.parse(ip_address+'/ChurchAPI/api/ghmi/login.php');
                                   var headers = {'Content-Type': 'application/json'};
                                   var body = json.encode({
                                     'email': _email.text,
@@ -241,7 +241,61 @@ class _SignInPageState extends State<SignInPage> {
                                     ),
                                   ),
                                 ),
-                              ),
+                              ),*/
+                              ElevatedButton(
+                                  onPressed: ()async{
+                                  // Handle the onTap event here
+                                  print('Container clicked!');
+
+                                  print("login button pressed");
+                var url = Uri.parse(ip_address+'/ChurchAPI/api/ghmi/login.php');
+              var headers = {'Content-Type': 'application/json'};
+          var body = json.encode({
+          'email': _email.text,
+          'password': _pass.text,
+          });
+            try{
+        var response = await http.post(url, headers: headers, body: body);
+        ////////////////////////////
+        print("test response");
+        print(response.body);
+        print(response.statusCode);
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        final LoginResponse loginResponse = LoginResponse.fromJson(responseData);
+        print("you must redirect now");
+        print("get the login response status"+loginResponse.status);
+
+        if (loginResponse.status=="Ok") {
+        logindata = await SharedPreferences.getInstance();
+        logindata.setString("function_log_control","granted");
+        logindata.setBool("login", false);
+        logindata.setInt("id",loginResponse.data[0]);
+        print("tapinda");
+        Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+        builder: (context) => BottomNavigationExample(),
+        ),
+        );
+        }else{
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+        content: Text(loginResponse.message),
+        duration: Duration(seconds: 4),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.red, width: 2),
+        borderRadius: BorderRadius.circular(10),
+        ),
+        ),
+        );
+        }
+        }catch(e){
+
+    }
+                                  },
+                              child: Text("Login2")),
                               SizedBox(height: 15,),
                               orDivider(),
                               SizedBox(height: 5,),

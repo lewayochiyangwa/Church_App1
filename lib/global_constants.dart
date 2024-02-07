@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-const String ip_address = "http://54.198.97.69";
+const String ip_address = "http://3.93.2.74";
 //const String ip_address = "http://192.168.100.2:93";
 const String logo = "assets/images/ghmi.jpg";
 const String google_api_key = "AIzaSyAS9M27zVJ_CGlzYqcnx_Z82in0ghD_7dU";

@@ -6,6 +6,7 @@ import 'package:iserve_billing/dashboard/home2.dart';
 import 'package:iserve_billing/global_constants.dart';
 import 'package:iserve_billing/screens/Events.dart';
 import 'package:iserve_billing/screens/PrayerRequest.dart';
+import 'package:iserve_billing/screens/bible.dart';
 import 'package:iserve_billing/screens/notes/note_home.dart';
 import 'package:iserve_billing/screens/notes/note_home_try.dart';
 import 'package:iserve_billing/settings.dart';
@@ -89,11 +90,11 @@ class _DrawerClassState extends State<DrawerClass> {
     endIndent: 20.0,),
           ListTile(
             leading: Icon(Icons.contact_mail),
-            title: Text("Request Payer"),
+            title: Text("Bible"),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PrayerRequest()),// Settings()),
+                MaterialPageRoute(builder: (context) => BiblePage()),// Settings()),
               );
 
             },

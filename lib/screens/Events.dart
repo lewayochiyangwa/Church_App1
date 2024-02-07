@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:iserve_billing/drawer.dart';
 import 'package:iserve_billing/services/params_controller.dart';
 
@@ -42,15 +43,20 @@ class _EventsState extends State<Events> {
                     child: ListView.builder(
                       itemCount:params_controller.events.length,// jobList.length,
                       itemBuilder: (ctx, i) {
+                        DateTime time = DateFormat('HH:mm:ss').parse(params_controller.events[i].fromTime);
+                        String fromTime = DateFormat('HH:mm').format(time);
+
+                        DateTime time2 = DateFormat('HH:mm:ss').parse(params_controller.events[i].toTime);
+                        String toTime = DateFormat('HH:mm').format(time2);
                         return EventsContainer(
-                          id:int.parse(params_controller.events[i].ID),//jobList[i].id,
-                          description:params_controller.events[i].description,// jobList[i].description,
-                          //iconUrl: jobList[i].iconUrl,
-                          location:params_controller.events[i].location,// jobList[i].location,
-                          fromTime: params_controller.events[i].fromTime,//jobList[i].salary,
-                          toTime: params_controller.events[i].toTime,//jobList[i].salary,
-                          title: params_controller.events[i].title,//jobList[i].title,
-                          onTap: () {}
+                            id:int.parse(params_controller.events[i].ID),//jobList[i].id,
+                            description:params_controller.events[i].description,// jobList[i].description,
+                            //iconUrl: jobList[i].iconUrl,
+                            location:params_controller.events[i].location,// jobList[i].location,
+                            fromTime: fromTime,//jobList[i].salary,
+                            toTime: toTime,//jobList[i].salary,
+                            title: params_controller.events[i].title,//jobList[i].title,
+                            onTap: () {}
                         );
                       },
                     ),

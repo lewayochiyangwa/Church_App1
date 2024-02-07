@@ -57,6 +57,14 @@ dependencies:
   sqflite_common_ffi: ^2.2.5
   intl: ^0.19.0
 
+  clipboard: ^0.1.3
+  expandable: ^5.0.1
+  fluttertoast: ^8.2.4
+  provider: ^6.1.1
+  scroll_to_index: ^3.0.1
+  scrollable_positioned_list: ^0.3.8
+
+
 
 
 dev_dependencies:

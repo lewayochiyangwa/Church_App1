@@ -34,7 +34,7 @@ class _GivingState extends State<Giving> {
 
   // Initial Selected Value
   String dropdownvalue = 'Deposit';
-
+  bool paymentLoader = true;
 
   @override
   Widget build(BuildContext context) {
@@ -167,11 +167,14 @@ class _GivingState extends State<Giving> {
                     ),
                   ),
 
-
                   MyElevatedButton(
-                    onPressed:(){
+                    onPressed:() async {
                     print("Give Button Clicked");
-                    pay(_value.toString(),_textAmountController.text,_textPhoneController.text);
+                    paymentLoader?showDataAlert():null;
+
+                  pay(_value.toString(),_textAmountController.text,_textPhoneController.text);
+                    await Future.delayed(Duration(seconds: 12~/2));
+                    Navigator.of(context).pop();
                   },
                     text: "Give ", color: ThemeColor,
                     textColor: Colors.white,
@@ -185,6 +188,36 @@ class _GivingState extends State<Giving> {
     );
   }
 
+  showDataAlert() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20.0,
+                ),
+              ),
+            ),
+          /*  contentPadding: EdgeInsets.only(
+              top: 10.0,
+            ),*/
+         /*   title: Text(
+              "Processing Giving",
+              style: TextStyle(fontSize: 24.0),
+            ),*/
+            content:Container(
+              height: 100,
+              child: Container(
+                height: 25,
+                width: 25,
+                child: Center(child: Text("Processing...")),
+              ),
+            ),
+          );
+        });
+  }
   void pay(String trxnType,String amount,String phone)async{
     print("tapinda mu payment");
     print("trn Type"+trxnType.toString());
@@ -225,10 +258,12 @@ class _GivingState extends State<Giving> {
             headers: {"Content-Type": "application/json"},
             body: body
         );
-        print("${response1.statusCode}");
+        print("${response1}");
         print("${response1.body}");
         //   return response;
         //  }
+
+
 
         print('------------------');
         await Future.delayed(Duration(seconds: 20~/2));

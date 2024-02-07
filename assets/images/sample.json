@@ -1,0 +1,39 @@
+
+[
+  {
+    "book": "Genesis",
+    "chapter": "1",
+    "verse": "1",
+    "text": "In the beginning God created the heaven and the earth. "
+  },
+  {
+    "book": "Genesis",
+    "chapter": "1",
+    "verse": "2",
+    "text": "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters."
+  },
+  {
+    "book": "Genesis",
+    "chapter": "1",
+    "verse": "3",
+    "text": "And God said, Let there be light: and there was light. "
+  },
+  {
+    "book": "Exodus",
+    "chapter": "20",
+    "verse": "1",
+    "text": "And God spoke all these words, saying, "
+  },
+  {
+    "book": "Exodus",
+    "chapter": "20",
+    "verse": "2",
+    "text": "I am the LORD your God, who brought you out of the land of Egypt, out of the house of slavery. "
+  },
+  {
+    "book": "Exodus",
+    "chapter": "20",
+    "verse": "3",
+    "text": "You shall have no other gods before me. "
+  }
+]
