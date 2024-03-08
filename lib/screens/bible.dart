@@ -213,8 +213,9 @@ class _BiblePageState extends State<BiblePage> {
       ),*/
       appBar: AppBar(
         backgroundColor: ThemeColor,
+        iconTheme: IconThemeData(color:ThemeColor2),
         title: Text(
-          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
+          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: ThemeColor2),
 
 
         ),
@@ -249,21 +250,30 @@ class _BiblePageState extends State<BiblePage> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: filterPassagesByBookAndSearch().length,
-              itemBuilder: (BuildContext context, int index) {
-                BiblePassage passage = filterPassagesByBookAndSearch()[index];
-                return ListTile(
-                  title: Text("["+passage.chapter+":"+passage.verse+"]"+
-                    passage.text,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  /*subtitle: Text(
-                    '${passage.book} ${passage.chapter}:${passage.verse}',
-                    style: TextStyle(fontSize: 12),
-                  ),*/
-                );
-              },
+            child: MediaQuery.removePadding(context: context,
+              removeTop: true,
+              child: ListView.builder(
+
+                itemCount: filterPassagesByBookAndSearch().length,
+                itemBuilder: (BuildContext context, int index) {
+                  BiblePassage passage = filterPassagesByBookAndSearch()[index];
+                  return ListTile(
+                    dense:true,
+                 //   dense:true,
+
+
+                // contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 8
+                    title: Text("["+passage.chapter+":"+passage.verse+"]"+
+                      passage.text,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    /*subtitle: Text(
+                      '${passage.book} ${passage.chapter}:${passage.verse}',
+                      style: TextStyle(fontSize: 12),
+                    ),*/
+                  );
+                },
+              ),
             ),
           ),
         ],

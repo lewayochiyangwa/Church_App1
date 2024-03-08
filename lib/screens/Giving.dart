@@ -177,7 +177,7 @@ class _GivingState extends State<Giving> {
                     Navigator.of(context).pop();
                   },
                     text: "Give ", color: ThemeColor,
-                    textColor: Colors.white,
+                    textColor: ThemeColor2,
                     width: 130,
                     height: 40,
                   ),

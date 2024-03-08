@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:iserve_billing/models/response.dart';
 import 'package:iserve_billing/services/params_controller.dart';
@@ -36,15 +38,27 @@ class _PrayerRequestState extends State<PrayerRequest> {
   String dropdownvalue = 'Deposit';
 
 
+  InterstitialAd? _interstitialAd;
+
+
+  final String _adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/1033173712'
+      : 'ca-app-pub-3940256099942544/4411468910';
+
+@override
+  void initState() {
+  _loadAd();
+
+}
   @override
   Widget build(BuildContext context) {
     final params_controller =  Get.put<ParamsController>(ParamsController());
     return  Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: ThemeColor2),
           backgroundColor: ThemeColor,
           title: Text(
-            NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
-
+            NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color:ThemeColor2),
 
           ),
         ),
@@ -72,11 +86,11 @@ class _PrayerRequestState extends State<PrayerRequest> {
                         contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
                       ),
                       value:_value,//_value !=null ? _value : null,//
-                      items:params_controller.location_data.map((e){
+                      items:params_controller.prayer_data.map((e){
                       //  print("this is the value"+e["id"].toString());
                         return DropdownMenuItem(
                           // child: Text(e["username"]),
-                          child: Text(e["type"]),
+                          child: Text(e["prayer_type"]),
                           value:int.parse(e["id"]),);
                       }).toList(),
                       onChanged: (v){
@@ -138,8 +152,27 @@ class _PrayerRequestState extends State<PrayerRequest> {
 
                   MyElevatedButton(
                     onPressed:(){
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Request Sent'),
+                              //  content: Text("Log In To Upload Your Work"),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('ok'),
+                                  onPressed:() async {
+                                      Navigator.of(context).pop();
+                                      _interstitialAd?.show();
+                                  },
+                                ),
+
+                              ],
+                            );
+                          }
+                      );
                     print("Give Button Clicked");
-                    pay(_value.toString(),_textAmountController.text,_textPhoneController.text);
+                //    pay(_value.toString(),_textAmountController.text,_textPhoneController.text);
                   },
                     text: "Prayer Request ", color: ThemeColor,
                     textColor: Colors.white,
@@ -210,6 +243,46 @@ class _PrayerRequestState extends State<PrayerRequest> {
 
 
 
+  }
+
+  void _loadAd() {
+    InterstitialAd.load(
+        adUnitId: _adUnitId,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (InterstitialAd ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              // Called when the ad showed the full screen content.
+                onAdShowedFullScreenContent: (ad) {},
+                // Called when an impression occurs on the ad.
+                onAdImpression: (ad) {},
+                // Called when the ad failed to show full screen content.
+                onAdFailedToShowFullScreenContent: (ad, err) {
+                  ad.dispose();
+                },
+                // Called when the ad dismissed full screen content.
+                onAdDismissedFullScreenContent: (ad) {
+                  ad.dispose();
+                },
+                // Called when a click is recorded for an ad.
+                onAdClicked: (ad) {});
+
+            // Keep a reference to the ad so you can show it later.
+            _interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            // ignore: avoid_print
+            print('InterstitialAd failed to load: $error');
+          },
+        ));
+  }
+
+  @override
+  void dispose() {
+    _interstitialAd?.dispose();
+    super.dispose();
   }
 }
 

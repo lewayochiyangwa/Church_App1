@@ -28,7 +28,7 @@ class MyElevatedButton extends StatelessWidget {
         ),
         onPressed:onPressed,
         child: Text(text,
-            style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white)
+            style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: textColor)
         )
     );/*ElevatedButton(
       onPressed: onPressed,

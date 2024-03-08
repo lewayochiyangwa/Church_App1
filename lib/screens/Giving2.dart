@@ -41,9 +41,10 @@ class _Giving2State extends State<Giving2> {
     final params_controller =  Get.put<ParamsController>(ParamsController());
     return  Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: ThemeColor2),
           backgroundColor: ThemeColor,
           title: Text(
-            NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
+            NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color:ThemeColor2),
 
 
           ),

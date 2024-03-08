@@ -109,7 +109,7 @@ class _SignInPageState extends State<SignInPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             CircleAvatar(
-                              backgroundImage: AssetImage("assets/images/ghmi.jpg"),
+                              backgroundImage: AssetImage("assets/images/play_store_512.jpg"),
                               radius: 80.0,
                             ),
                           //  SizedBox(height: 20,),
@@ -150,152 +150,128 @@ class _SignInPageState extends State<SignInPage> {
                                 ),
                               ),
                               SizedBox(height: 10,),
-                              /* Container(
-                                height: 40,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(
-                                        begin: Alignment.centerRight,
-                                        end: Alignment.centerLeft,
-                                        colors:[Colors.blue[500], Colors.blue[200]]
-                                    )
-                                ),
-                                child: Center(
-                                  child:Text("Sign Up", style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),),
-                                ),
-                              ),*/
-                         /*     GestureDetector(
-                                onTap: ()async {
-                                  // Handle the onTap event here
-                                  print('Container clicked!');
 
-                                  print("login button pressed");
-                                  var url = Uri.parse(ip_address+'/ChurchAPI/api/ghmi/login.php');
-                                  var headers = {'Content-Type': 'application/json'};
-                                  var body = json.encode({
-                                    'email': _email.text,
-                                    'password': _pass.text,
-                                  });
-                                  try{
-                                    var response = await http.post(url, headers: headers, body: body);
-                                    ////////////////////////////
-                                    print("test response");
-                                    print(response.body);
-                                    print(response.statusCode);
-                                    final Map<String, dynamic> responseData = jsonDecode(response.body);
-                                    final LoginResponse loginResponse = LoginResponse.fromJson(responseData);
-                                    print("you must redirect now");
-                                    print("get the login response status"+loginResponse.status);
+                              LayoutBuilder(
+                                builder: (BuildContext context, BoxConstraints constraints) {
+                                  if (constraints.maxWidth < 600) {
+                                    // If the maximum width is less than 600, apply small screen layout
+                                    return Container(
+                                      width: 150,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(primary: ThemeColor),
+                                        onPressed: () async {
+                                          // Handle the onTap event here
+                                          print('Container clicked!');
+                                          print("login button pressed");
+                                          var url = Uri.parse(ip_address + login_url);
+                                          var headers = {'Content-Type': 'application/json'};
+                                          var body = json.encode({
+                                            'email': _email.text,
+                                            'password': _pass.text,
+                                          });
+                                          try {
+                                            var response = await http.post(url, headers: headers, body: body);
+                                            ////////////////////////////
+                                            print("test response");
+                                            print(response.body);
+                                            print(response.statusCode);
+                                            final Map<String, dynamic> responseData = jsonDecode(response.body);
+                                            final LoginResponse loginResponse = LoginResponse.fromJson(responseData);
+                                            print("you must redirect now");
+                                            print("get the login response status" + loginResponse.status);
 
-                                    if (loginResponse.status=="Ok") {
-                                      logindata = await SharedPreferences.getInstance();
-                                      logindata.setString("function_log_control","granted");
-                                      logindata.setBool("login", false);
-                                      logindata.setInt("id",loginResponse.data[0]);
-                                      print("tapinda");
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => BottomNavigationExample(),
-                                        ),
-                                      );
-                                    }else{
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text(loginResponse.message),
-                                          duration: Duration(seconds: 4),
-                                          behavior: SnackBarBehavior.floating,
-                                          backgroundColor: Colors.blue,
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(color: Colors.red, width: 2),
-                                            borderRadius: BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  }catch(e){
+                                            if (loginResponse.status == "Ok") {
+                                              logindata = await SharedPreferences.getInstance();
+                                              logindata.setString("function_log_control", "granted");
+                                              logindata.setBool("login", false);
+                                              logindata.setInt("id", loginResponse.data[0]);
+                                              print("tapinda");
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => BottomNavigationExample(),
+                                                ),
+                                              );
+                                            } else {
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                  content: Text(loginResponse.message),
+                                                  duration: Duration(seconds: 4),
+                                                  behavior: SnackBarBehavior.floating,
+                                                  backgroundColor: Colors.blue,
+                                                  shape: RoundedRectangleBorder(
+                                                    side: BorderSide(color: Colors.red, width: 2),
+                                                    borderRadius: BorderRadius.circular(10),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          } catch (e) {}
+                                        },
+                                        child: Text("Login"),
+                                      ),
+                                    );
+                                  } else {
+                                    // If the maximum width is 600 or more, apply large screen layout
+                                    return Container(
+                                      width: 300, // Adjust the width for large screens
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(primary: ThemeColor),
+                                        onPressed: () async {
+                                          // Handle the onTap event here
+                                          print('Container clicked!');
+                                          print("login button pressed");
+                                          var url = Uri.parse(ip_address + login_url);
+                                          var headers = {'Content-Type': 'application/json'};
+                                          var body = json.encode({
+                                            'email': _email.text,
+                                            'password': _pass.text,
+                                          });
+                                          try {
+                                            var response = await http.post(url, headers: headers, body: body);
+                                            ////////////////////////////
+                                            print("test response");
+                                            print(response.body);
+                                            print(response.statusCode);
+                                            final Map<String, dynamic> responseData = jsonDecode(response.body);
+                                            final LoginResponse loginResponse = LoginResponse.fromJson(responseData);
+                                            print("you must redirect now");
+                                            print("get the login response status" + loginResponse.status);
 
+                                            if (loginResponse.status == "Ok") {
+                                              logindata = await SharedPreferences.getInstance();
+                                              logindata.setString("function_log_control", "granted");
+                                              logindata.setBool("login", false);
+                                              logindata.setInt("id", loginResponse.data[0]);
+                                              print("tapinda");
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => BottomNavigationExample(),
+                                                ),
+                                              );
+                                            } else {
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                  content: Text(loginResponse.message),
+                                                  duration: Duration(seconds: 4),
+                                                  behavior: SnackBarBehavior.floating,
+                                                  backgroundColor: Colors.blue,
+                                                  shape: RoundedRectangleBorder(
+                                                    side: BorderSide(color: Colors.red, width: 2),
+                                                    borderRadius: BorderRadius.circular(10),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          } catch (e) {}
+                                        },
+                                        child: Text("Login"),
+                                      ),
+                                    );
                                   }
                                 },
-                                child: Container(
-                                  height: 40,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.centerRight,
-                                      end: Alignment.centerLeft,
-                                      colors: [Colors.blue[500]!, Colors.blue[200]!],
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Login",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),*/
-                              ElevatedButton(
-                                  onPressed: ()async{
-                                  // Handle the onTap event here
-                                  print('Container clicked!');
-
-                                  print("login button pressed");
-                var url = Uri.parse(ip_address+'/ChurchAPI/api/ghmi/login.php');
-              var headers = {'Content-Type': 'application/json'};
-          var body = json.encode({
-          'email': _email.text,
-          'password': _pass.text,
-          });
-            try{
-        var response = await http.post(url, headers: headers, body: body);
-        ////////////////////////////
-        print("test response");
-        print(response.body);
-        print(response.statusCode);
-        final Map<String, dynamic> responseData = jsonDecode(response.body);
-        final LoginResponse loginResponse = LoginResponse.fromJson(responseData);
-        print("you must redirect now");
-        print("get the login response status"+loginResponse.status);
-
-        if (loginResponse.status=="Ok") {
-        logindata = await SharedPreferences.getInstance();
-        logindata.setString("function_log_control","granted");
-        logindata.setBool("login", false);
-        logindata.setInt("id",loginResponse.data[0]);
-        print("tapinda");
-        Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-        builder: (context) => BottomNavigationExample(),
-        ),
-        );
-        }else{
-        ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-        content: Text(loginResponse.message),
-        duration: Duration(seconds: 4),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.red, width: 2),
-        borderRadius: BorderRadius.circular(10),
-        ),
-        ),
-        );
-        }
-        }catch(e){
-
-    }
-                                  },
-                              child: Text("Login2")),
+                              ),
                               SizedBox(height: 15,),
                               orDivider(),
                               SizedBox(height: 5,),

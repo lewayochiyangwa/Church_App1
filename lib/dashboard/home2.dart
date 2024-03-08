@@ -1,7 +1,10 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:iserve_billing/dashboard/responsive.dart';
 
 import 'package:iserve_billing/services/params_controller.dart';
@@ -9,14 +12,16 @@ import 'package:iserve_billing/services/params_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../global_constants.dart';
 
+import '../adverts/AdMob.dart';
 import '../screens/Events2.dart';
 import '../screens/Giving2.dart';
 import '../screens/PrayerRequest.dart';
+import '../screens/text_to_speech.dart';
 import '../temp1/ui/widgets/Footer.dart';
 import '../temp1/ui/widgets/MyElevatedButtton.dart';
 import '../temp1/ui/widgets/VideoComponent.dart';
 import 'constants.dart';
-
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 
 class DashboardScreen extends StatefulWidget {
@@ -56,6 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       //clientID=logindata.getString('clientID')!;
     });
   }
+
 
 
 
@@ -113,7 +119,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                  );
                                },
                                    text: "Events", color:ThemeColor ,//Colors.red.shade900
-                                   textColor: Colors.white,
+                                   textColor: ThemeColor2,
                                    width: 100,
                                    height: 40,
                                ),
@@ -126,7 +132,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     );
                                   },
                                       text: "Give ", color:ThemeColor,
-                                      textColor: Colors.white,
+                                      textColor: ThemeColor2,
                                       width: 100,
                                       height: 40,
                                   ),
@@ -161,7 +167,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: 8.0),
                                             child: Text(
-                                                "7:30PM",
+                                                "20:00 PM",
                                                 style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white54)
                                             ),
                                           ),
@@ -175,7 +181,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                             ),
                                             child: Center(
                                               child: Text(
-                                                '13',
+                                                '14',
                                                 style: TextStyle(
                                                   fontSize: 24,
                                                   color: Colors.white,
@@ -188,7 +194,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: 8.0),
                                             child: Text(
-                                                "MARCH",
+                                                "Feb",
                                                 style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color:ThemeColor)
 
                                             ),
@@ -207,7 +213,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                                           Padding(
                                             padding: const EdgeInsets.only(left:10.0),
-                                            child: Text("Wednesday Bible Study",
+                                            child: Text("Wednesday Partners",
                                                 style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color:ThemeColor)
 
                                             ),
@@ -217,7 +223,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                           SizedBox(height: 15,),
                                           Padding(
                                             padding: const EdgeInsets.only(left:10.0),
-                                            child: Text("1233 tafara",
+                                            child: Text("ZOOM",
                                                 style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white54)
 
                                             ),
@@ -232,7 +238,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ),
                             ),
                           ),
-                          MyElevatedButton(onPressed:() async {
+                          MyElevatedButton(
+                            onPressed:() async {
+
                             logindata = await SharedPreferences.getInstance();
                             if(logindata.getBool('login')!){
                            //   logindata2 = await SharedPreferences.getInstance();
@@ -261,10 +269,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                           },
                             text: "Prayer Request ", color:ThemeColor,
-                            textColor: Colors.white,
+                            textColor:ThemeColor2,
                             width: 200,
                             height: 30,
                           ),
+                          AdmobAdvert(),
+
                           SizedBox(height:defaultPadding),
                        Footer(
                        theme:"JOIN THE WORSHIPPING",

@@ -70,6 +70,7 @@ class _BottomNavigationExampleState extends State {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:ThemeColor ,//Colors.red.shade900
+        iconTheme: IconThemeData(color:ThemeColor2),
         //
 
           actions: [
@@ -79,10 +80,16 @@ class _BottomNavigationExampleState extends State {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
 
-                  Text('Privacy'),
-                  SizedBox(width: 15,),
-                  InkWell(
-                      child: Icon(Icons.help_outline),
+                ///  Text('Privacy',style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color:ThemeColor2),),
+
+                /*  InkWell(
+                      child: Row(
+                        children: [
+                          Text('FAQ',style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color:ThemeColor2),),
+                          SizedBox(width: 10,),
+                          Icon(Icons.help_outline),
+                        ],
+                      ),
                     onTap:(){
 
                       Navigator.push(
@@ -90,7 +97,7 @@ class _BottomNavigationExampleState extends State {
                         MaterialPageRoute(builder: (context) => FaqPage()),// Settings()),
                       );
                     },
-                  ),
+                  ),*/
                   PopupMenuButton<String>(
                     onSelected: (String result) {
                       setState(() {
@@ -122,7 +129,7 @@ class _BottomNavigationExampleState extends State {
             )
           ],
         title: Text(
-          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
+          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color:ThemeColor2),
 
 
         ),
@@ -134,11 +141,12 @@ class _BottomNavigationExampleState extends State {
       drawer: DrawerClass(),
       body: _pages[_selectedTab],
       bottomNavigationBar: BottomNavigationBar(
-        //backgroundColor: Colors.red,
+        type: BottomNavigationBarType.fixed, // Fixed
+        backgroundColor: ThemeColor, // <-- This works for fixed
         currentIndex: _selectedTab,
         onTap: (index) => _changeTab(index),
-        selectedItemColor:ThemeColor,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor:ThemeColor2,
+        unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.work), label: "Events"),

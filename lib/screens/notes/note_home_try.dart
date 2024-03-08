@@ -151,8 +151,9 @@ class _NoteScreenTryState extends State<NoteScreenTry> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ThemeColor,
+        iconTheme: const IconThemeData(color:ThemeColor2),
         title: Text(
-          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color: Colors.white),
+          NavTitle,style: TextStyle(fontSize:15,fontWeight: FontWeight.bold,color:ThemeColor2),
 
 
         ),

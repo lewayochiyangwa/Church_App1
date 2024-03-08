@@ -14,6 +14,7 @@ class ParamsController extends GetxController {
   List partime_data = [].obs;
   List online_data = [].obs;
   List location_data = [].obs;
+  List prayer_data = [].obs;
 
   List recentPosts_data = [].obs;
 
@@ -28,22 +29,34 @@ class ParamsController extends GetxController {
     getData();
    getEvents();
     getSermons();
+    getPrayerType();
 
   }
 
   getData()async {
     //print(ip_address+"/ChurchAPI/api/ghmi/params.php");
-    final res = await http.get(Uri.parse(ip_address+"/ChurchAPI/api/ghmi/params.php"));
+    final res = await http.get(Uri.parse(ip_address+"/ChurchAPI/api/authurhuggins/params.php"));
     var jsonData = json.decode(res.body);
     location_data = jsonData['data']['give'];
+   // prayer_data = jsonData['data']['prayer_type'];
     print('machado');
+
+  }
+
+  getPrayerType()async {
+    //print(ip_address+"/ChurchAPI/api/ghmi/params.php");
+    final res = await http.get(Uri.parse(ip_address+"/ChurchAPI/api/authurhuggins/params.php"));
+    var jsonData = json.decode(res.body);
+    prayer_data = jsonData['data']['prayer_type'];
+    print('/////////////////////////////////////lets view prayer data///////////////////////////////////////');
+    print(prayer_data);
 
   }
 
   getEvents()async {
     //print(ip_address+"/ChurchAPI/api/ghmi/get_events.php");
     final response = await http.get(
-        Uri.parse(ip_address+"/ChurchAPI/api/ghmi/get_events.php"));
+        Uri.parse(ip_address+"/ChurchAPI/api/authurhuggins/get_events.php"));
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = json.decode(response.body);
@@ -61,10 +74,10 @@ class ParamsController extends GetxController {
 
 
   getSermons()async {
-    print(ip_address+"/ChurchAPI/api/ghmi/get_sermons.php");
+    print(ip_address+"/ChurchAPI/api/authurhuggins/get_sermons.php");
     print("=================Tapinda muma Sermons Call Get====================");
     final response = await http.get(
-        Uri.parse(ip_address+"/ChurchAPI/api/ghmi/get_sermons.php"));
+        Uri.parse(ip_address+"/ChurchAPI/api/authurhuggins/get_sermons.php"));
     print("=================Tapinda muma Sermons after response====================");
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = json.decode(response.body);

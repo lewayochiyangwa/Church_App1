@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iserve_billing/global_constants.dart';
 import 'package:iserve_billing/services/params_controller.dart';
 
 
@@ -8,6 +9,7 @@ import '../temp1/ui/widgets/eventscontainer.dart';
 import 'package:get/get.dart';
 
 import '../temp1/ui/widgets/sermonscontainer.dart';
+import 'bible.dart';
 class Sermons extends StatefulWidget {
   const Sermons({Key? key}) : super(key: key);
 
@@ -77,6 +79,38 @@ class _SermonsState extends State<Sermons> {
                   )
                 : MyBottomSheet(),*///Container(),
           //MyBottomSheet(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: Align(
+             alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      side: BorderSide(color: ThemeColor)
+                  ),
+                  onPressed:(){
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BiblePage()),// Settings()),NoteScreen
+                    );
+
+              } , child:Image.asset('assets/images/bible.png',height: 50,width: 50,)
+            ),
+          ),
+          )
+       /*   Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+
+            child: Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                    onPressed:(){},
+                    child: Text("")
+                )
+            ),
+          ),*/
+
         ],
       ),
     );
