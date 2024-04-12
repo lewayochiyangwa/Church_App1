@@ -47,7 +47,7 @@ class _PrayerRequestState extends State<PrayerRequest> {
 
 @override
   void initState() {
-  _loadAd();
+
 
 }
   @override
@@ -208,7 +208,7 @@ class _PrayerRequestState extends State<PrayerRequest> {
         print(response.pollUrl);
         getPollUrl = response.pollUrl;
 
-        var url = Uri.parse('http://'+ip_address+'/church_api/api/client/give');
+        var url = Uri.parse('http://'+ip_address+'/ChurchAPI/api/authurhuggins/post_give.php');
 
         Map data = {
           'type' : trxnType,
@@ -245,45 +245,8 @@ class _PrayerRequestState extends State<PrayerRequest> {
 
   }
 
-  void _loadAd() {
-    InterstitialAd.load(
-        adUnitId: _adUnitId,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          // Called when an ad is successfully received.
-          onAdLoaded: (InterstitialAd ad) {
-            ad.fullScreenContentCallback = FullScreenContentCallback(
-              // Called when the ad showed the full screen content.
-                onAdShowedFullScreenContent: (ad) {},
-                // Called when an impression occurs on the ad.
-                onAdImpression: (ad) {},
-                // Called when the ad failed to show full screen content.
-                onAdFailedToShowFullScreenContent: (ad, err) {
-                  ad.dispose();
-                },
-                // Called when the ad dismissed full screen content.
-                onAdDismissedFullScreenContent: (ad) {
-                  ad.dispose();
-                },
-                // Called when a click is recorded for an ad.
-                onAdClicked: (ad) {});
 
-            // Keep a reference to the ad so you can show it later.
-            _interstitialAd = ad;
-          },
-          // Called when an ad request failed.
-          onAdFailedToLoad: (LoadAdError error) {
-            // ignore: avoid_print
-            print('InterstitialAd failed to load: $error');
-          },
-        ));
-  }
 
-  @override
-  void dispose() {
-    _interstitialAd?.dispose();
-    super.dispose();
-  }
 }
 
 

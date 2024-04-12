@@ -8,6 +8,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:iserve_billing/adverts/AdMob.dart';
 import 'package:iserve_billing/screens/HymnHomePage.dart';
 import 'package:iserve_billing/screens/bible.dart';
+import 'package:iserve_billing/screens/kidzTales.dart';
 import 'package:iserve_billing/screens/notes/note_home_try.dart';
 import 'package:iserve_billing/screens/text_to_speech.dart';
 

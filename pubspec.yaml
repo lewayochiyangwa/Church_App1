@@ -63,6 +63,7 @@ dependencies:
   flutter_tts: ^3.8.5
   carousel_slider: ^4.2.1
   google_mobile_ads: ^4.0.0
+  dropdown_button2: ^2.3.9
 
 
 

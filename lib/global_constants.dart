@@ -15,6 +15,6 @@ const ThemeColor = Color(0xFF040D59);
 //646ed1
 //0xFFB71C1C
 //d20d08
-const NavTitle="Assemblies \n Of \n God";
+const NavTitle="Church \n Name";
 const videobar="https://charleswayo.s3.amazonaws.com/AG/Pastor+Kelvin+Zakayo%2C+Assemblies+of+God%2C+Zimbabwe++%E2%80%93+Pavement+Project%2C+20+years!.mp4";
 const login_url = "/ChurchAPI/api/authurhuggins/login.php";

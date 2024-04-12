@@ -39,7 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late int userId;
   //late String clientID;
 
-
+  InterstitialAd? interstitialAd;
 
 
 
@@ -242,11 +242,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             onPressed:() async {
 
                             logindata = await SharedPreferences.getInstance();
+                            print("this is the bool for login");
+                            print(logindata.getBool('login'));
                             if(logindata.getBool('login')!){
                            //   logindata2 = await SharedPreferences.getInstance();
                            //   logindata2.setString("login2","granted");
 
-                              ScaffoldMessenger.of(context).showSnackBar(
+                            /*  ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text("Login To Submit Prayer Request"),
                                   duration: Duration(seconds: 4),
@@ -257,14 +259,61 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
+                              );*/
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Message'),
+                                      content: Text("Login To Submit Prayer Request"),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text('OK'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  }
                               );
                             //  print("hmm andisi kuziva");
                             }else{
+                              InterstitialAd.load(
+                                adUnitId: Platform.isAndroid
+                                    ? "ca-app-pub-3940256099942544/1033173712"
+                                    : "ca-app-pub-3940256099942544/4411468910",
+                                request: const AdRequest(),
+                                adLoadCallback: InterstitialAdLoadCallback(
+                                  onAdLoaded: (ad) {
+                                    interstitialAd = ad;
+                                    ad.show();
 
-                              Navigator.push(
+                                    interstitialAd?.fullScreenContentCallback =
+                                        FullScreenContentCallback(
+                                            onAdDismissedFullScreenContent: (ad) {
+                                              interstitialAd?.dispose();
+                                              ad.dispose();
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>  PrayerRequest(),
+                                                ),
+                                              );
+                                            }, onAdFailedToShowFullScreenContent: (ad, err) {
+                                          ad.dispose();
+                                          interstitialAd?.dispose();
+                                        });
+                                  },
+                                  onAdFailedToLoad: (err) {
+                                    interstitialAd?.dispose();
+                                  },
+                                ),
+                              );
+                          /*    Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => PrayerRequest()),// Settings()),
-                              );
+                              );*/
                             }
 
                           },
