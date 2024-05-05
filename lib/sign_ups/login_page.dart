@@ -295,7 +295,7 @@ class _SignInPageState extends State<SignInPage> {
 
     }
                                   },
-                              child: Text("Login2")),
+                              child: Text("Login")),
                               SizedBox(height: 15,),
                               orDivider(),
                               SizedBox(height: 5,),

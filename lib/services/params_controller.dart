@@ -32,11 +32,12 @@ class ParamsController extends GetxController {
   }
 
   getData()async {
-    //print(ip_address+"/ChurchAPI/api/ghmi/params.php");
+    print(ip_address+"/ChurchAPI/api/ghmi/params.php");
     final res = await http.get(Uri.parse(ip_address+"/ChurchAPI/api/ghmi/params.php"));
     var jsonData = json.decode(res.body);
     location_data = jsonData['data']['give'];
-    print('machado');
+    print('===========================tipei params daata=================');
+    print(location_data);
 
   }
 
